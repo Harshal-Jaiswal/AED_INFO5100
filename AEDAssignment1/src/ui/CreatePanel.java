@@ -384,25 +384,6 @@ public class CreatePanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnFileOpenActionPerformed
 
-//    public TestFileChooser2() {
-//
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                JFrame frame = new JFrame();
-//                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                frame.setLayout(new BorderLayout());
-//                frame.add(new MainPane());
-//                frame.setSize(800, 400);
-//                frame.setLocationRelativeTo(null);
-//                frame.setVisible(true);
-//
-//            }
-//        });
-//
-//    }
-
     protected class MainPane extends JPanel {
 
         private JFileChooser fileChooser;
@@ -453,91 +434,91 @@ public class CreatePanel extends javax.swing.JPanel {
 
     public boolean validateData() {
 
-//        if (txtName.getText().length() < 1) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Name");
-//            return false;
-//        }
-//
-//        if (txtGeoData.getText().length() < 1) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Location/Address");
-//            return false;
-//        }
-//
-//        if (!isValidDate(txtDob.getText())) {
-//            JOptionPane.showMessageDialog(this, "Enter proper date in mm/dd/yyyy format");
-//            return false;
-//        }
-//
-//        if (txtTelNo.getText().length() != 10) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Telephone Number");
-//            return false;
-//        }
-//
-//        if (txtFaxNo.getText().length() != 10) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Fax Number");
-//            return false;
-//        }
-//
-//        if (!isValidEmail(txtEmail.getText())) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Email Address");
-//            return false;
-//        }
-//
-//        if (txtSSN.getText().length() != 9) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 9 digit SSN number");
-//            return false;
-//        }
-//
-//        if (txtMedRecNo.getText().length() != 10) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Medical Record Number");
-//            return false;
-//        }
-//
-//        if (txtHealthPlanNo.getText().length() != 10) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Health plan Number");
-//            return false;
-//        }
-//
-//        if (txtBankAccNo.getText().length() != 10) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Bank Account Number");
-//            return false;
-//        }
-//
-//        if (txtCertNo.getText().length() != 6) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 6 digit Alpha Numeric Certificate Number");
-//            return false;
-//        }
-//
-//        if (txtVehLicence.getText().length() != 6) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 6 digit alpha numeric Licence plate");
-//            return false;
-//        }
-//
-//        if (txtDeviceNo.getText().length() != 4) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 4 digit Device Serial Number");
-//            return false;
-//        }
-//
-//        if (!isURLValid(txtLinkedIn.getText())) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Url for LinkedIn");
-//            return false;
-//        }
-//
-//        if (!isValidIPAddress(txtIPA.getText())) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Ip Address like \"000.12.12.034\" ");
-//            return false;
-//        }
-//
-//        if (txtBiometricId.getText().length() != 5) {
-//            JOptionPane.showMessageDialog(this, "Enter proper 5 digit Biometric ID");
-//            return false;
-//        }
-//
-//        if (txtUniqueId.getText().length() < 1) {
-//            JOptionPane.showMessageDialog(this, "Enter proper Unique Id");
-//            return false;
-//        }
-        
+        if (txtName.getText().length() < 1) {
+            JOptionPane.showMessageDialog(this, "Enter proper Name");
+            return false;
+        }
+
+        if (txtGeoData.getText().length() < 1) {
+            JOptionPane.showMessageDialog(this, "Enter proper Location/Address");
+            return false;
+        }
+
+        if (!isValidDate(txtDob.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter proper date in mm/dd/yyyy format");
+            return false;
+        }
+
+        if ( !txtTelNo.getText().matches("[0-9]+") ||  txtTelNo.getText().length() != 10 ) {
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Telephone Number");
+            return false;
+        }
+
+        if (!txtTelNo.getText().matches("[0-9]+") ||  txtFaxNo.getText().length() != 10) {
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Fax Number");
+            return false;
+        }
+
+        if (!isValidEmail(txtEmail.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter proper Email Address");
+            return false;
+        }
+
+        if ( !txtTelNo.getText().matches("[0-9]+") || txtSSN.getText().length() != 9) {
+            JOptionPane.showMessageDialog(this, "Enter proper 9 digit SSN number");
+            return false;
+        }
+
+        if ( !txtTelNo.getText().matches("[0-9]+") || txtMedRecNo.getText().length() != 10) {
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Medical Record Number");
+            return false;
+        }
+
+        if ( !txtTelNo.getText().matches("[0-9]+") || txtHealthPlanNo.getText().length() != 10) {
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Health plan Number");
+            return false;
+        }
+
+        if (!txtTelNo.getText().matches("[0-9]+") || txtBankAccNo.getText().length() != 10) {
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Bank Account Number");
+            return false;
+        }
+
+        if (txtCertNo.getText().length() != 6) {
+            JOptionPane.showMessageDialog(this, "Enter proper 6 digit Alpha Numeric Certificate Number");
+            return false;
+        }
+
+        if (txtVehLicence.getText().length() != 6) {
+            JOptionPane.showMessageDialog(this, "Enter proper 6 digit alpha numeric Licence plate");
+            return false;
+        }
+
+        if ( !txtTelNo.getText().matches("[0-9]+") || txtDeviceNo.getText().length() != 4) {
+            JOptionPane.showMessageDialog(this, "Enter proper 4 digit Device Serial Number");
+            return false;
+        }
+
+        if (!isURLValid(txtLinkedIn.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter proper Url for LinkedIn");
+            return false;
+        }
+
+        if (!isValidIPAddress(txtIPA.getText())) {
+            JOptionPane.showMessageDialog(this, "Enter proper Ip Address like \"000.12.12.034\" ");
+            return false;
+        }
+
+        if (txtBiometricId.getText().length() != 5) {
+            JOptionPane.showMessageDialog(this, "Enter proper 5 digit Biometric ID");
+            return false;
+        }
+
+        if (txtUniqueId.getText().length() < 1) {
+            JOptionPane.showMessageDialog(this, "Enter proper Unique Id");
+            return false;
+        }
+
         if (txtFacePic.getText().length() < 1) {
             JOptionPane.showMessageDialog(this, "Please add Face Picture");
             return false;
