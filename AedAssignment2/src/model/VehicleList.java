@@ -5,6 +5,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -141,7 +142,7 @@ public class VehicleList {
         ArrayList<Vehicle> list = new ArrayList<>();
 
         for (Vehicle v : vehicleList) {
-            if (v.getModel().matches(text)) {
+            if (v.getCity().matches(text)) {
                 list.add(v);
             }
         }
@@ -174,6 +175,41 @@ public class VehicleList {
         }
         return res;
 
+    }
+
+    public ArrayList<Vehicle> expiredMaintainance() {
+        ArrayList<Vehicle> list = new ArrayList<>();
+
+        for (Vehicle v : vehicleList) {
+            Date resultdate = new Date(v.getMaintenanceDate());
+            if (resultdate.compareTo(new Date(System.currentTimeMillis())) < 0) {
+                list.add(v);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Vehicle> getMinMaxSeats(int min, int max) {
+        ArrayList<Vehicle> list = new ArrayList<>();
+
+        for (Vehicle v : vehicleList) {
+
+            if (v.getMaxSeats() >= min && v.getMaxSeats() <= max) {
+                list.add(v);
+            }
+        }
+        return list;
+    }
+
+    public ArrayList<Vehicle> getFirstAvaliableCar() {
+        ArrayList<Vehicle> list = new ArrayList<>();
+
+        for (Vehicle v : vehicleList) {
+            if (v.isIsAvaliable()) {
+                list.add(v);
+            }
+        }
+        return list;
     }
 
 }

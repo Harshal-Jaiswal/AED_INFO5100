@@ -62,7 +62,14 @@ public final class ViewPanel extends javax.swing.JPanel {
         tabManuf = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnListManuf1 = new javax.swing.JButton();
+        btnExpMaint = new javax.swing.JButton();
+        btnExpMaint1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtMinSeat = new javax.swing.JTextField();
+        txtMaxSeat = new javax.swing.JTextField();
+        btnAvilCar = new javax.swing.JButton();
+        labFirstAvilCar = new javax.swing.JLabel();
 
         tbVehicles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -208,14 +215,42 @@ public final class ViewPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tabManuf);
 
-        jLabel1.setText("jLabel1");
-
         jLabel2.setText("Last Updated time:");
 
-        btnListManuf1.setText("List all car manuf.");
-        btnListManuf1.addActionListener(new java.awt.event.ActionListener() {
+        btnExpMaint.setText("Expired Maintenance cars");
+        btnExpMaint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListManuf1ActionPerformed(evt);
+                btnExpMaintActionPerformed(evt);
+            }
+        });
+
+        btnExpMaint1.setText("search car with seats");
+        btnExpMaint1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpMaint1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Min");
+
+        jLabel9.setText("Max");
+
+        txtMinSeat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMinSeatActionPerformed(evt);
+            }
+        });
+
+        txtMaxSeat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaxSeatActionPerformed(evt);
+            }
+        });
+
+        btnAvilCar.setText("Find First Avaliable Car");
+        btnAvilCar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvilCarActionPerformed(evt);
             }
         });
 
@@ -224,16 +259,17 @@ public final class ViewPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(79, Short.MAX_VALUE)
+                .addContainerGap(142, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(302, 302, 302)
-                        .addComponent(labAvaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(96, 96, 96)
-                        .addComponent(labUnavaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(449, 449, 449)
+                        .addComponent(labAvaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(labUnavaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -241,13 +277,15 @@ public final class ViewPanel extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnFilterCity, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnListManuf, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMakeFilter, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-                                    .addComponent(txtFilterYear)
-                                    .addComponent(txtFilterCity))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtMakeFilter, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                                        .addComponent(txtFilterYear)
+                                        .addComponent(txtFilterCity))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -258,11 +296,25 @@ public final class ViewPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnFilterModel, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtFitlerModel))))
+                                        .addComponent(txtFitlerModel))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(btnExpMaint)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnExpMaint1)
+                                                .addGap(28, 28, 28)
+                                                .addComponent(jLabel3)
+                                                .addGap(3, 3, 3)
+                                                .addComponent(txtMinSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtMaxSeat, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(btnAvilCar, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(66, 66, 66)
-                                .addComponent(btnListManuf1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(379, 379, 379)
+                                .addComponent(labFirstAvilCar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -301,10 +353,10 @@ public final class ViewPanel extends javax.swing.JPanel {
                     .addComponent(btnMarkAvaliable)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labAvaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labUnavaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labUnavaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labAvaliable, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(txtMakeFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,18 +371,29 @@ public final class ViewPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnFilterCity)
-                    .addComponent(txtFilterCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtFilterCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExpMaint)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(btnListManuf))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(btnListManuf1)))
-                .addContainerGap(284, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel3)
+                            .addComponent(txtMinSeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaxSeat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExpMaint1))
+                        .addGap(39, 39, 39)
+                        .addComponent(btnAvilCar)
+                        .addGap(18, 18, 18)
+                        .addComponent(labFirstAvilCar, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -346,7 +409,7 @@ public final class ViewPanel extends javax.swing.JPanel {
         vehicleList.deleteByLicencePlate(model.getValueAt(selectedRow, 8).toString());
         DisplayVehicle();
         JOptionPane.showMessageDialog(this, "Record Deleted!");
-        long lastTime = System.currentTimeMillis(); 
+        long lastTime = System.currentTimeMillis();
         Date dateTime = new Date(lastTime);
         jLabel2.setText("Last Updated time:" + dateTime);
 
@@ -454,28 +517,59 @@ public final class ViewPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnListManufActionPerformed
 
-    private void btnListManuf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListManuf1ActionPerformed
+    private void btnExpMaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpMaintActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnListManuf1ActionPerformed
+        ArrayList<Vehicle> list = vehicleList.expiredMaintainance();
+        DisplayVehicle(list);
+    }//GEN-LAST:event_btnExpMaintActionPerformed
+
+    private void btnExpMaint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpMaint1ActionPerformed
+        // TODO add your handling code here:
+        int min = Integer.parseInt(txtMinSeat.getText());
+        int max = Integer.parseInt(txtMaxSeat.getText());
+
+        ArrayList<Vehicle> list = vehicleList.getMinMaxSeats(min, max);
+        DisplayVehicle(list);
+    }//GEN-LAST:event_btnExpMaint1ActionPerformed
+
+    private void txtMinSeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMinSeatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMinSeatActionPerformed
+
+    private void txtMaxSeatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaxSeatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaxSeatActionPerformed
+
+    private void btnAvilCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvilCarActionPerformed
+        // TODO add your handling code here:
+        ArrayList<Vehicle> list = vehicleList.getFirstAvaliableCar();
+        DisplayVehicle(list);
+        labFirstAvilCar.setText(list.get(0).getModel() + " " + list.get(0).getLicencePlate());
+    }//GEN-LAST:event_btnAvilCarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvilCar;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnExpMaint;
+    private javax.swing.JButton btnExpMaint1;
     private javax.swing.JButton btnFilterCity;
     private javax.swing.JButton btnFilterModel;
     private javax.swing.JButton btnFilterYear;
     private javax.swing.JButton btnFindSerialNo;
     private javax.swing.JButton btnListManuf;
-    private javax.swing.JButton btnListManuf1;
     private javax.swing.JButton btnMarkAvaliable;
     private javax.swing.JButton btnUnavil;
     private javax.swing.JButton btnView;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labAvaliable;
+    private javax.swing.JLabel labFirstAvilCar;
     private javax.swing.JLabel labUnavaliable;
     private javax.swing.JTable tabManuf;
     private javax.swing.JTable tbVehicles;
@@ -483,6 +577,8 @@ public final class ViewPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtFilterYear;
     private javax.swing.JTextField txtFitlerModel;
     private javax.swing.JTextField txtMakeFilter;
+    private javax.swing.JTextField txtMaxSeat;
+    private javax.swing.JTextField txtMinSeat;
     private javax.swing.JTextField txtSerialNo;
     // End of variables declaration//GEN-END:variables
 
@@ -516,12 +612,12 @@ public final class ViewPanel extends javax.swing.JPanel {
 
             model.addRow(row);
         }
-        
+
         //last time fleet catlog was updated.
         long time = vehicleList.getLastUpdateTime();
         Date dateTime = new Date(time);
         jLabel2.setText("Last Updated time:" + dateTime.toString());
-        
+
         //Update avaliable and unavaliable cars
         labAvaliable.setText("Avaliable (" + avail + ")");
         labUnavaliable.setText("Unavaliable (" + unavil + ")");
@@ -562,7 +658,7 @@ public final class ViewPanel extends javax.swing.JPanel {
         long time = vehicleList.getLastUpdateTime();
         Date dateTime = new Date(time);
         jLabel2.setText("Last Updated time:" + dateTime.toString());
-        
+
         //Update avaliable and unavaliable cars
         labAvaliable.setText("Avaliable (" + avail + ")");
         labUnavaliable.setText("Unavaliable (" + unavil + ")");

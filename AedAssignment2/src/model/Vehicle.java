@@ -39,7 +39,6 @@ public class Vehicle {
             boolean isAvaliable,
             String LicencePlate) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy ");
         Date resultdate = new Date(maintenanceDate);
 
         this.make = make;
@@ -48,7 +47,7 @@ public class Vehicle {
         this.maxSeats = maxSeats;
         this.serialNo = serialNo;
         this.city = city;
-        this.maintenanceDate = sdf.format(resultdate);
+        this.maintenanceDate = resultdate;
         this.isAvaliable = isAvaliable;
         this.updateTime = updateTime;
         this.LicencePlate = LicencePlate;
@@ -109,7 +108,6 @@ public class Vehicle {
     }
 
     public void setMaintenanceDate(String maintenanceDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMM dd,yyyy HH:mm");
         Date resultdate = new Date(maintenanceDate);
         this.maintenanceDate = resultdate;
     }
