@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -204,13 +204,13 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="10" rowCount="4">
-                <Column editable="false" title="Make" type="java.lang.String"/>
-                <Column editable="false" title="Model" type="java.lang.String"/>
-                <Column editable="false" title="Year of Manuf." type="java.lang.Integer"/>
-                <Column editable="false" title="Max Seats" type="java.lang.Integer"/>
-                <Column editable="false" title="Serial No." type="java.lang.String"/>
-                <Column editable="false" title="Maintainance Date" type="java.lang.String"/>
-                <Column editable="false" title="City" type="java.lang.String"/>
+                <Column editable="true" title="Make" type="java.lang.String"/>
+                <Column editable="true" title="Model" type="java.lang.String"/>
+                <Column editable="true" title="Year of Manuf." type="java.lang.Integer"/>
+                <Column editable="true" title="Max Seats" type="java.lang.Integer"/>
+                <Column editable="true" title="Serial No." type="java.lang.String"/>
+                <Column editable="true" title="Maintainance Date" type="java.lang.String"/>
+                <Column editable="true" title="City" type="java.lang.String"/>
                 <Column editable="false" title="UpdateTime" type="java.lang.String"/>
                 <Column editable="false" title="Licence Plate" type="java.lang.String"/>
                 <Column editable="false" title="Avaliable" type="java.lang.Boolean"/>
@@ -279,8 +279,11 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnView">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View"/>
+        <Property name="text" type="java.lang.String" value="Update"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>

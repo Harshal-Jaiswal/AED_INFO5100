@@ -4,6 +4,16 @@
  */
 package ui;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import model.VehicleList;
 
 /**
@@ -15,12 +25,29 @@ public class MainJFrameForm extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrameForm
      */
-    
     VehicleList vehicleList;
-    
-    public MainJFrameForm() {
+    ImageIcon myImage;
+
+    public ImageIcon setIcon(String m) {
+        if (m != null) {
+            myImage = new ImageIcon(m);
+        } 
+        Image img1 = myImage.getImage();
+        Image img2 = img1.getScaledInstance(750, 465, Image.SCALE_SMOOTH);
+        ImageIcon i = new ImageIcon(img2);
+        return i;
+
+    }
+
+    public MainJFrameForm() throws IOException {
         initComponents();
         vehicleList = new VehicleList();
+//        setIcon();
+//        Image img1 = myImage.getImage("/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/car.jpg");
+//        Image img2 = img1.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
+//        ImageIcon i = new ImageIcon(img2);
+        labImage.setIcon(setIcon( "/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/car.jpg"));
+
     }
 
     /**
@@ -34,21 +61,30 @@ public class MainJFrameForm extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
+        labImage = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnAddCar = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(133, 133, 133)
+                .addComponent(labImage, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(labImage, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -96,12 +132,12 @@ public class MainJFrameForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1163, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();
@@ -149,7 +185,11 @@ public class MainJFrameForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainJFrameForm().setVisible(true);
+                try {
+                    new MainJFrameForm().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainJFrameForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -160,5 +200,6 @@ public class MainJFrameForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel labImage;
     // End of variables declaration//GEN-END:variables
 }

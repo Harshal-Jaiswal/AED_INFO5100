@@ -84,6 +84,12 @@ public class AddCarPanel extends javax.swing.JPanel {
         txtMake.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         txtMake.setMinimumSize(new java.awt.Dimension(11, 29));
 
+        chBoxAvaliable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chBoxAvaliableActionPerformed(evt);
+            }
+        });
+
         jLabel10.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Add Details of the Car");
@@ -140,7 +146,7 @@ public class AddCarPanel extends javax.swing.JPanel {
                                         .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(246, 246, 246)
+                                .addGap(239, 239, 239)
                                 .addComponent(txtMake, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,6 +245,10 @@ public class AddCarPanel extends javax.swing.JPanel {
     private void txtLicencePlateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLicencePlateActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLicencePlateActionPerformed
+
+    private void chBoxAvaliableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chBoxAvaliableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chBoxAvaliableActionPerformed
 
     private boolean validateData() {
 

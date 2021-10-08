@@ -4,9 +4,15 @@
  */
 package ui;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import static java.util.Date.parse;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.VehicleList;
@@ -86,7 +92,7 @@ public final class ViewPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                true, true, true, true, true, true, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,7 +105,12 @@ public final class ViewPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tbVehicles);
 
-        btnView.setText("View");
+        btnView.setText("Update");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -546,6 +557,59 @@ public final class ViewPanel extends javax.swing.JPanel {
         DisplayVehicle(list);
         labFirstAvilCar.setText(list.get(0).getModel() + " " + list.get(0).getLicencePlate());
     }//GEN-LAST:event_btnAvilCarActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRow = tbVehicles.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please Select a row to update.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tbVehicles.getModel();
+        Object[] row = null;
+        row = new Object[10];
+        for (int j = 0; j < model.getColumnCount(); j++) {
+            row[j] = model.getValueAt(selectedRow, j);
+
+        }
+        
+        DateFormat dateFormat = new SimpleDateFormat(
+                "EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+
+        SimpleDateFormat f = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+        long milliseconds = 0;
+
+        try {
+            dateFormat.format(new Date());
+            dateFormat.parse(row[7].toString());
+
+            Date d = f.parse(row[7].toString());
+            milliseconds = d.getTime();
+
+        } catch (ParseException ex) {
+            Logger.getLogger(ViewPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        vehicleList.deleteByLicencePlate(row[8].toString());
+
+        vehicleList.addVehicle(row[0].toString(),
+                row[1].toString(),
+                Integer.parseInt(row[2].toString()),
+                Integer.parseInt(row[3].toString()),
+                row[4].toString(),
+                row[6].toString(),
+                row[5].toString(),
+                System.currentTimeMillis(),
+                Boolean.getBoolean( row[9].toString()),
+                row[8].toString());
+
+        DisplayVehicle();
+        JOptionPane.showMessageDialog(this, "Record Updated!");
+        long lastTime = System.currentTimeMillis();
+        Date dateTime = new Date(lastTime);
+        jLabel2.setText("Last Updated time:" + dateTime);
+
+    }//GEN-LAST:event_btnViewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
