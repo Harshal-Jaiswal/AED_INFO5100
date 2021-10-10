@@ -4,10 +4,16 @@
  */
 package ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Vehicle;
 import model.VehicleList;
 
 /**
@@ -283,7 +289,7 @@ public class AddCarPanel extends javax.swing.JPanel {
         }
 
         if (!txtSerialNo.getText().matches("[0-9]+") || txtSerialNo.getText().length() != 10) {
-            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Telephone Number");
+            JOptionPane.showMessageDialog(this, "Enter proper 10 digit Serial Number");
             return false;
         }
 
@@ -296,6 +302,24 @@ public class AddCarPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Enter check the avaliblity bheck box");
             return false;
         }
+        if (!chBoxAvaliable.isSelected()) {
+            JOptionPane.showMessageDialog(this, "Enter check the avaliblity bheck box");
+            return false;
+        }
+
+        if (txtLicencePlate.getText().length() != 6) {
+
+            JOptionPane.showMessageDialog(this, "Enter proper licence plate");
+            return false;
+        }
+
+        for (Vehicle v : vehicleList.getVehicleList()) {
+            if (v.getLicencePlate().matches(txtLicencePlate.getText())) {
+                JOptionPane.showMessageDialog(this, "Enter unique licence plate");
+                return false;
+            }
+        }
+
         return true;
     }
 

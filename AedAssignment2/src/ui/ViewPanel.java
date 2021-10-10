@@ -4,6 +4,10 @@
  */
 package ui;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,6 +36,7 @@ public final class ViewPanel extends javax.swing.JPanel {
     public ViewPanel(VehicleList vehicleList) {
         initComponents();
         this.vehicleList = vehicleList;
+        
         DisplayVehicle();
 
     }
@@ -573,7 +578,7 @@ public final class ViewPanel extends javax.swing.JPanel {
             row[j] = model.getValueAt(selectedRow, j);
 
         }
-        
+
         DateFormat dateFormat = new SimpleDateFormat(
                 "EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
 
@@ -600,7 +605,7 @@ public final class ViewPanel extends javax.swing.JPanel {
                 row[6].toString(),
                 row[5].toString(),
                 System.currentTimeMillis(),
-                Boolean.getBoolean( row[9].toString()),
+                Boolean.getBoolean(row[9].toString()),
                 row[8].toString());
 
         DisplayVehicle();

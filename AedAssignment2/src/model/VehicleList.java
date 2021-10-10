@@ -4,6 +4,7 @@
  */
 package model;
 
+import static java.lang.Integer.max;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -57,7 +58,7 @@ public class VehicleList {
 
     public void deleteByLicencePlate(String licence) {
         for (Vehicle v : vehicleList) {
-
+ 
             if (v.getLicencePlate() == licence) {
                 vehicleList.remove(v);
                 break;

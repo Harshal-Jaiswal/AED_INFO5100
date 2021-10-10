@@ -6,7 +6,10 @@ package ui;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,12 +44,39 @@ public class MainJFrameForm extends javax.swing.JFrame {
 
     public MainJFrameForm() throws IOException {
         initComponents();
+        
         vehicleList = new VehicleList();
-//        setIcon();
-//        Image img1 = myImage.getImage("/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/car.jpg");
-//        Image img2 = img1.getScaledInstance(120, 120, Image.SCALE_SMOOTH);
-//        ImageIcon i = new ImageIcon(img2);
         labImage.setIcon(setIcon( "/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/car.jpg"));
+        
+        String filepath = "//Users/harshaljaiswal/Downloads/aed.txt";
+        File file = new File(filepath);
+        try {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+
+            Object[] lines = br.lines().toArray();
+
+            for (int m = 0; m < lines.length; m++) {
+                String[] row = lines[m].toString().split(" ");
+                System.out.println("add car"+lines[m].toString());
+                vehicleList.addVehicle(
+                        row[0],
+                        row[1],
+                        Integer.parseInt( row[2]),
+                        Integer.parseInt(row[3]),
+                        row[4],
+                        row[5],
+                        row[6],
+                        System.currentTimeMillis(),
+                Boolean.parseBoolean(row[7]),
+                    row[8]
+            
+         );
+                
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("no file found");
+        }
 
     }
 
