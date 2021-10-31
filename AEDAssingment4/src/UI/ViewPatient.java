@@ -59,11 +59,11 @@ public class ViewPatient extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Name", "gender", "Address", "Encounter times"
+                "Id", "Name", "gender", "Bp", "temp", "encounter count"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -129,11 +129,13 @@ public class ViewPatient extends javax.swing.JPanel {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(26, 26, 26))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(347, 347, 347)
-                                    .addComponent(jButton1))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(347, 347, 347)
+                                .addComponent(jButton1))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -226,12 +228,14 @@ public class ViewPatient extends javax.swing.JPanel {
        model.setRowCount(0);
         for (Patient v : ms.getPatientList().getPatients()) {
           
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = v.getId();
             row[1] = v.getFullName();
             row[2] = v.getGender();
-            row[3] = v.getResidence().getAddress();
-            row[4] = v.getEncounterHistory().getEncounterHistory().size();
+            row[3] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign().getBloodPressure();
+            row[4] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign().getBodyTemp();
+//            row[5] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign();
+            row[5] = v.getEncounterHistory().getEncounterHistory().size();
 
             model.addRow(row);
         }

@@ -4,6 +4,7 @@
  */
 package UI;
 
+import Model.Analytic;
 import Model.Encounter;
 import Model.MedSystem;
 import Model.Patient;
@@ -13,6 +14,7 @@ import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.HashSet;
 import Model.Person;
+import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
 
@@ -25,35 +27,147 @@ public class Analytics extends javax.swing.JPanel {
     /**
      * Creates new form Analytics
      */
-    HashMap<String, Integer> set;
+    HashMap<String, Integer> ageGroup;
+//
+//    HashMap<String, ArrayList<Integer>> set;
     MedSystem ms;
+//    Analytic an;
+//    
+//    Set<String> comm;
+    ArrayList<Analytic> ana;
 
     public Analytics(MedSystem ms) {
         initComponents();
         this.ms = ms;
-        set = new HashMap<>();
+//        set = new HashMap<>();
+//        an = new Analytic();
+//        comm = new Set<>();
+
+        ArrayList<Integer> ress;
+        ana = new ArrayList<>();
 
         for (Patient pat : ms.getPatientList().getPatients()) {
             for (Encounter enc : pat.getEncounterHistory().getEncounterHistory()) {
                 int bp = enc.getVitalSign().getBloodPressure();
-                Period period =  Period.between( pat.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
-                System.out.println("sdf "+ isAbnormal( period.getYears() , bp) );
-                if(isAbnormal( period.getYears() , bp) ){
-                    if(set.containsKey(pat.getResidence().getState()) ){
-                        Integer res = set.get(pat.getResidence().getState());
-                        set.put(pat.getResidence().getState(), ++res);
-                    }else{
-                        set.put(pat.getResidence().getState(), 1);
+                Period period = Period.between(pat.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+                System.out.println("sdf " + isAbnormal(period.getYears(), bp));
+
+                int age = period.getYears();
+                int index = isInArray(pat.getResidence().getState().toString());
+                if (age < 21) {
+                    if (!isAbnormal(period.getYears(), bp)) {
+                        if (index < 0) {
+                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            ana.add(analytic);
+                        } else {
+                            int res = ana.get(index).arr[0];
+                            ana.get(index).addAgeAnalytics(0, ++res);
+                        }
+//                        if (set.containsKey(pat.getResidence().getState())) {
+//                            res = set.get(pat.getResidence().getState());
+//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
+//                            res.add(0, ++ii);
+//                            set.put(pat.getResidence().getState(), res);
+//                        } else {
+//                             res = new ArrayList<>();
+//                            res.add(0,1);
+//
+//                            set.put(pat.getResidence().getState(), res);
+//                        }
+
                     }
-                    
+
+                } else if (age < 46) {
+                    if (!isAbnormal(period.getYears(), bp)) {
+                        if (index < 0) {
+                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            ana.add(analytic);
+                        } else {
+                            int res = ana.get(index).arr[1];
+                            ana.get(index).addAgeAnalytics(1, ++res);
+                        }
+//                        if (set.containsKey(pat.getResidence().getState())) {
+//                             res = set.get(pat.getResidence().getState());
+//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
+//                            res.add(1, ++ii);
+//                            set.put(pat.getResidence().getState(), res);
+//                        } else {
+//                             res = new ArrayList<>();
+//                            res.add(1,1);
+//
+//                            set.put(pat.getResidence().getState(), res);
+//                        }
+
+                    }
+
+                } else if (age < 65) {
+                    if (!isAbnormal(period.getYears(), bp)) {
+
+                        if (index < 0) {
+                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            ana.add(analytic);
+                        } else {
+                            int res = ana.get(index).arr[2];
+                            ana.get(index).addAgeAnalytics(2, ++res);
+                        }
+//                        if (set.containsKey(pat.getResidence().getState())) {
+//                            res = set.get(pat.getResidence().getState());
+//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
+//                            res.add(2, ++ii);
+//                            set.put(pat.getResidence().getState(), res);
+//                        } else {
+//                            res = new ArrayList<>();
+//                            res.add(2,1);
+//
+//                            set.put(pat.getResidence().getState(), res);
+//                        }
+
+                    }
+                } else {
+                    if (!isAbnormal(period.getYears(), bp)) {
+
+                        if (index < 0) {
+                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            ana.add(analytic);
+                        } else {
+                            int res = ana.get(index).arr[3];
+                            ana.get(index).addAgeAnalytics(3, ++res);
+                        }
+//                        if (set.containsKey(pat.getResidence().getState())) {
+//                             res = set.get(pat.getResidence().getState());
+//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
+//                            res.add(3, ++ii);
+//                            set.put(pat.getResidence().getState(), res);
+//                        } else {
+//                             res = new ArrayList<>();
+//                            res.add(3,1);
+//
+//                            set.put(pat.getResidence().getState(), res);
+//                        }
+
+                    }
                 }
             }
         }
         displayPatient();
+
+    }
+
+    public int isInArray(String comm) {
+        int i = 0;
+        for (Analytic anc : ana) {
+
+            if (anc.getCommunity().equals(comm)) {
+                return i;
+            }
+
+            i++;
+        }
+        return -1;
     }
 
     public boolean isAbnormal(int age, int val) {
-        System.out.println("jkdsf" + age +" "+val);
+        System.out.println("jkdsf" + age + " " + val);
 
         if (age < 21) {
             if (val >= 109 && val <= 121) {
@@ -73,7 +187,7 @@ public class Analytics extends javax.swing.JPanel {
             } else {
                 return false;
             }
-        }else {
+        } else {
             if (val >= 130 && val <= 143) {
                 return true;
             } else {
@@ -82,16 +196,25 @@ public class Analytics extends javax.swing.JPanel {
         }
 
     }
-    
-     private void displayPatient() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-       model.setRowCount(0);
-        for (Object key : set.keySet().toArray()) {
-          
-            Object[] row = new Object[5];
-            row[0] = key.toString();
-            row[1] = set.get(key);
 
+    private void displayPatient() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        int i = 0;
+        for (Object key : ana.toArray()) {
+
+            Object[] row = new Object[5];
+            row[0] = ana.get(i).Community;
+            row[1] = ana.get(i).arr[0];
+            row[2] = ana.get(i).arr[1];
+            row[3] = ana.get(i).arr[2];
+            row[4] = ana.get(i).arr[3];
+//            row[1] = set.get(key).get(0);
+//            row[2] = set.get(key).get(1);
+//            row[3] = set.get(key).get(2);
+//            row[4] = set.get(key).get(3);
+
+            i++;
             model.addRow(row);
         }
 
@@ -112,19 +235,19 @@ public class Analytics extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Community", "Abnormal", "Title 3", "Title 4"
+                "Community", "below 21", "21-46", "46-65", "65+"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Analytics");
+        jLabel1.setText("Abnormal BP Analytics");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -133,11 +256,11 @@ public class Analytics extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(193, 193, 193)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel1)))
                 .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,8 +269,8 @@ public class Analytics extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(341, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -187,7 +187,6 @@ public class PatientScreen extends javax.swing.JPanel {
             return;
         }
         
-        
         btnAddPatient.setEnabled(true);
        
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -209,8 +208,8 @@ public class PatientScreen extends javax.swing.JPanel {
         Person p = ms.searchUser((int) model.getValueAt(selectedRow, 0));
         
         System.out.println("temp: "+txtTemp.getText() +" "+TxtPulse.getText() +" "+ txtBP.getText());
-        VitalSigns vs = new VitalSigns(Integer.valueOf(txtTemp.getText()) , Integer.valueOf(TxtPulse.getText()), Integer.valueOf(txtBP.getText()));
-        Encounter enc = new Encounter(vs , resultdate, diag.getText());
+        VitalSigns vs = new VitalSigns(Integer.valueOf(txtTemp.getText()), Integer.valueOf(TxtPulse.getText()), Integer.valueOf(txtBP.getText()));
+        Encounter enc = new Encounter(vs, resultdate, diag.getText());
         //fullName, residence, gender, dob, id
         Patient pat = new Patient(p.getFullName(), p.getResidence(), p.getGender(), p.getDob(), p.getId(), enc);
         ms.addPatient(pat);
