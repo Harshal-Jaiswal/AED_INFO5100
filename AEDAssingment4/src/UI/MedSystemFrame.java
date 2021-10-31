@@ -168,7 +168,7 @@ public class MedSystemFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        PatientScreen view = new PatientScreen(ms);
+        PersonsScreen view = new PersonsScreen(ms);
         jSplitPane1.setRightComponent(view);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -180,7 +180,7 @@ public class MedSystemFrame extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ViewPatient view = new ViewPatient(ms);
+        ExistingPatient view = new ExistingPatient(ms);
         jSplitPane1.setRightComponent(view);
     }//GEN-LAST:event_jButton5ActionPerformed
 
