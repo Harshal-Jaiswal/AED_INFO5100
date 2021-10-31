@@ -9,7 +9,7 @@ public class House {
     private City city;
     private int pin;
     
-    public House(String add, String apt, String st, City c, int pin){
+    public House(String add, String apt, String st, Community community,City c, int pin){
         
         
         this.address = add;

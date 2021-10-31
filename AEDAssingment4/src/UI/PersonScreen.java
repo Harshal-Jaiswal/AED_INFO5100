@@ -5,6 +5,7 @@
 package UI;
 
 import Model.City;
+import Model.Community;
 import Model.House;
 import Model.MedSystem;
 import Model.Person;
@@ -58,7 +59,7 @@ public class PersonScreen extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         txtAptNo = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtComm = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
@@ -165,7 +166,7 @@ public class PersonScreen extends javax.swing.JPanel {
                                             .addComponent(jLabel8)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtState)))))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtComm, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 103, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -207,7 +208,7 @@ public class PersonScreen extends javax.swing.JPanel {
                     .addComponent(txtAptNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtComm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
                 .addGap(32, 32, 32)
                 .addComponent(btnSave)
@@ -247,7 +248,7 @@ public class PersonScreen extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         // fullName, residence, gender, dob, id
-        House h =new House(txtAdd.getText(), txtAptNo.getText(),txtState.getText() , new City(), Integer.valueOf(txtZip.getText()) );
+        House h =new House(txtAdd.getText(), txtAptNo.getText(),txtState.getText() ,new Community(txtComm.getText()), new City(txtCity.getText()), Integer.valueOf(txtZip.getText()) );
         
         String sss= female.isSelected()? "female": "male";
         System.out.println("dob:"+dob.getDate());
@@ -275,11 +276,11 @@ public class PersonScreen extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JRadioButton male;
     private javax.swing.JTextField txtAdd;
     private javax.swing.JTextField txtAptNo;
     private javax.swing.JTextField txtCity;
+    private javax.swing.JTextField txtComm;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtPersonId;
     private javax.swing.JTextField txtState;

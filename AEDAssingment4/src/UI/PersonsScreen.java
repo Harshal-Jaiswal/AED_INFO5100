@@ -66,11 +66,11 @@ public class PersonsScreen extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Name", "gender", "Address", "Age"
+                "Id", "Name", "gender", "Address", "Community", "Age"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -225,12 +225,13 @@ public class PersonsScreen extends javax.swing.JPanel {
           
             Period period =  Period.between( v.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
 
-            Object[] row = new Object[5];
+            Object[] row = new Object[6];
             row[0] = v.getId();
             row[1] = v.getFullName();
             row[2] = v.getGender();
             row[3] = v.getResidence().getAddress();
-            row[4] = period.getYears();
+            row[4] = v.getResidence().getCommunity().getCommunity();
+            row[5] = period.getYears();
 
             model.addRow(row);
         }

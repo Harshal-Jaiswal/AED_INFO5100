@@ -28,22 +28,13 @@ public class Analytics extends javax.swing.JPanel {
      * Creates new form Analytics
      */
     HashMap<String, Integer> ageGroup;
-//
-//    HashMap<String, ArrayList<Integer>> set;
     MedSystem ms;
-//    Analytic an;
-//    
-//    Set<String> comm;
     ArrayList<Analytic> ana;
 
     public Analytics(MedSystem ms) {
         initComponents();
         this.ms = ms;
-//        set = new HashMap<>();
-//        an = new Analytic();
-//        comm = new Set<>();
 
-        ArrayList<Integer> ress;
         ana = new ArrayList<>();
 
         for (Patient pat : ms.getPatientList().getPatients()) {
@@ -53,98 +44,51 @@ public class Analytics extends javax.swing.JPanel {
                 System.out.println("sdf " + isAbnormal(period.getYears(), bp));
 
                 int age = period.getYears();
-                int index = isInArray(pat.getResidence().getState().toString());
+                int index = isInArray(pat.getResidence().getCommunity().getCommunity());
                 if (age < 21) {
                     if (!isAbnormal(period.getYears(), bp)) {
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[0];
                             ana.get(index).addAgeAnalytics(0, ++res);
                         }
-//                        if (set.containsKey(pat.getResidence().getState())) {
-//                            res = set.get(pat.getResidence().getState());
-//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
-//                            res.add(0, ++ii);
-//                            set.put(pat.getResidence().getState(), res);
-//                        } else {
-//                             res = new ArrayList<>();
-//                            res.add(0,1);
-//
-//                            set.put(pat.getResidence().getState(), res);
-//                        }
-
                     }
 
                 } else if (age < 46) {
                     if (!isAbnormal(period.getYears(), bp)) {
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[1];
                             ana.get(index).addAgeAnalytics(1, ++res);
                         }
-//                        if (set.containsKey(pat.getResidence().getState())) {
-//                             res = set.get(pat.getResidence().getState());
-//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
-//                            res.add(1, ++ii);
-//                            set.put(pat.getResidence().getState(), res);
-//                        } else {
-//                             res = new ArrayList<>();
-//                            res.add(1,1);
-//
-//                            set.put(pat.getResidence().getState(), res);
-//                        }
-
                     }
 
                 } else if (age < 65) {
                     if (!isAbnormal(period.getYears(), bp)) {
 
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[2];
                             ana.get(index).addAgeAnalytics(2, ++res);
                         }
-//                        if (set.containsKey(pat.getResidence().getState())) {
-//                            res = set.get(pat.getResidence().getState());
-//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
-//                            res.add(2, ++ii);
-//                            set.put(pat.getResidence().getState(), res);
-//                        } else {
-//                            res = new ArrayList<>();
-//                            res.add(2,1);
-//
-//                            set.put(pat.getResidence().getState(), res);
-//                        }
 
                     }
                 } else {
                     if (!isAbnormal(period.getYears(), bp)) {
 
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getState());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[3];
                             ana.get(index).addAgeAnalytics(3, ++res);
                         }
-//                        if (set.containsKey(pat.getResidence().getState())) {
-//                             res = set.get(pat.getResidence().getState());
-//                            Integer ii = set.get(pat.getResidence().getState()).get(0);
-//                            res.add(3, ++ii);
-//                            set.put(pat.getResidence().getState(), res);
-//                        } else {
-//                             res = new ArrayList<>();
-//                            res.add(3,1);
-//
-//                            set.put(pat.getResidence().getState(), res);
-//                        }
-
                     }
                 }
             }

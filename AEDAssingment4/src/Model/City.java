@@ -3,8 +3,8 @@ package Model;
 public class City {
     private String cityName;
     
-    public City( ){
-        
+    public City(String c ){
+        cityName = c;
     }
 
     public String getCityName() {
