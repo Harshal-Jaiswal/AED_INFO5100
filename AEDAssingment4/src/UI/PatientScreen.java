@@ -10,6 +10,9 @@ import Model.Patient;
 import Model.Person;
 import Model.VitalSigns;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -63,11 +66,11 @@ public class PatientScreen extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Id", "Name", "gender", "Address"
+                "Id", "Name", "gender", "Address", "Age"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -220,11 +223,14 @@ public class PatientScreen extends javax.swing.JPanel {
        
         for (Person v : ms.getPersonList().getPersons()) {
           
-            Object[] row = new Object[4];
+            Period period =  Period.between( v.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+
+            Object[] row = new Object[5];
             row[0] = v.getId();
             row[1] = v.getFullName();
             row[2] = v.getGender();
             row[3] = v.getResidence().getAddress();
+            row[4] = period.getYears();
 
             model.addRow(row);
         }

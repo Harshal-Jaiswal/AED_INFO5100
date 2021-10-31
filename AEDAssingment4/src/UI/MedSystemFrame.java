@@ -40,7 +40,7 @@ public class MedSystemFrame extends javax.swing.JFrame {
                 String[] row = lines[m].toString().split(" ");
                 Date resultdate = new Date(System.currentTimeMillis());//row[7]
 
-                Person p= new Person(row[0]+row[1],new House(row[2], row[3], row[4], new City(), Integer.valueOf(row[6])), row[7], resultdate,Integer.valueOf(row[9]));
+                Person p= new Person(row[0]+row[1],new House(row[2], row[3], row[4], new City(), Integer.valueOf(row[6])), row[7], new Date(row[8]),Integer.valueOf(row[9]));
                 ms.addPerson(p);
                 
             }
@@ -177,7 +177,8 @@ public class MedSystemFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+        Analytics view = new Analytics(ms);
+        jSplitPane1.setRightComponent(view);
     }//GEN-LAST:event_jButton3ActionPerformed
    
 
