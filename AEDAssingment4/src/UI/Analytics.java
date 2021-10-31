@@ -12,7 +12,9 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.HashSet;
+import Model.Person;
 import java.util.Set;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,23 +26,34 @@ public class Analytics extends javax.swing.JPanel {
      * Creates new form Analytics
      */
     HashMap<String, Integer> set;
+    MedSystem ms;
 
     public Analytics(MedSystem ms) {
         initComponents();
+        this.ms = ms;
         set = new HashMap<>();
 
         for (Patient pat : ms.getPatientList().getPatients()) {
             for (Encounter enc : pat.getEncounterHistory().getEncounterHistory()) {
                 int bp = enc.getVitalSign().getBloodPressure();
                 Period period =  Period.between( pat.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+                System.out.println("sdf "+ isAbnormal( period.getYears() , bp) );
                 if(isAbnormal( period.getYears() , bp) ){
-                    set.put(pat.getResidence().getState(), bp);
+                    if(set.containsKey(pat.getResidence().getState()) ){
+                        Integer res = set.get(pat.getResidence().getState());
+                        set.put(pat.getResidence().getState(), ++res);
+                    }else{
+                        set.put(pat.getResidence().getState(), 1);
+                    }
+                    
                 }
             }
         }
+        displayPatient();
     }
 
     public boolean isAbnormal(int age, int val) {
+        System.out.println("jkdsf" + age +" "+val);
 
         if (age < 21) {
             if (val >= 109 && val <= 121) {
@@ -66,6 +79,20 @@ public class Analytics extends javax.swing.JPanel {
             } else {
                 return false;
             }
+        }
+
+    }
+    
+     private void displayPatient() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+       model.setRowCount(0);
+        for (Object key : set.keySet().toArray()) {
+          
+            Object[] row = new Object[5];
+            row[0] = key.toString();
+            row[1] = set.get(key);
+
+            model.addRow(row);
         }
 
     }
@@ -106,21 +133,21 @@ public class Analytics extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
+                        .addGap(193, 193, 193)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
