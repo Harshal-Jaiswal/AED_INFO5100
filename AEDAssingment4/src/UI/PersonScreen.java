@@ -63,6 +63,8 @@ public class PersonScreen extends javax.swing.JPanel {
         txtComm = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Person Details");
 

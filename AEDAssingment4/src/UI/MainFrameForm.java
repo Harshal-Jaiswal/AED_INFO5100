@@ -33,7 +33,7 @@ public class MainFrameForm extends javax.swing.JFrame {
         
         initComponents();
         
-        labImage.setIcon(setIcon( "/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/car.jpg"));
+        labImage.setIcon(setIcon( "/Users/harshaljaiswal/NetBeansProjects/AedAssignment2/doc.jpg"));
         
     }
 
@@ -55,6 +55,8 @@ public class MainFrameForm extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel1.setText("Username:");
 
@@ -126,7 +128,7 @@ public class MainFrameForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        if( txtUsername.getText().matches("a") && txtPassword.getText().matches("a")){
+        if( txtUsername.getText().matches("jaiswal.ha") && txtPassword.getText().matches("test123")){
             MedSystemFrame patient = new MedSystemFrame();
             patient.setVisible(true);
             

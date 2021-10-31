@@ -60,6 +60,8 @@ public class PersonsScreen extends javax.swing.JPanel {
         diag = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Person Screen");
 
