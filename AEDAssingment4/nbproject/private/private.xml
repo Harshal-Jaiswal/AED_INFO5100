@@ -5,19 +5,21 @@
         <group>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/Patient.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/MedSystem.java</file>
-            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/MedSystemFrame.java</file>
-            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/PatientScreen.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/VitalSigns.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/MedSystemFrame.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/PersonScreen.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Data/EncounterHistory.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/Analytics.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/Analytic.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/Encounter.java</file>
-            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/ViewPatient.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/ExistingPatient.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/Community.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Data/PersonDirectory.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/Person.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/MainFrameForm.java</file>
+            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/PersonsScreen.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/City.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Model/House.java</file>
-            <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/UI/ViewPerson.java</file>
             <file>file:/Users/harshaljaiswal/NetBeansProjects/AEDAssingment4/src/Data/PatientDirectory.java</file>
         </group>
     </open-files>

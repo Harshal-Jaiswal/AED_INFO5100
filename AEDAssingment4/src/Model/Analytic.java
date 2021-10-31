@@ -13,10 +13,12 @@ public class Analytic {
     public String Community;
     public int[] arr;
     
-    public Analytic(String comm){
+    public Analytic(String comm, int ii){
         Community = comm;
         arr = new int[4];
         for(int i=0;i <4 ; i++){
+            if( ii == i)
+                arr[i] = 1;
             arr[i] = 0;
         }
     }

@@ -12,11 +12,15 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.util.HashMap;
-import java.util.HashSet;
-import Model.Person;
+import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Set;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -48,7 +52,7 @@ public class Analytics extends javax.swing.JPanel {
                 if (age < 21) {
                     if (!isAbnormal(period.getYears(), bp)) {
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity(), 0);
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[0];
@@ -59,7 +63,7 @@ public class Analytics extends javax.swing.JPanel {
                 } else if (age < 46) {
                     if (!isAbnormal(period.getYears(), bp)) {
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity(), 1);
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[1];
@@ -71,7 +75,7 @@ public class Analytics extends javax.swing.JPanel {
                     if (!isAbnormal(period.getYears(), bp)) {
 
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity(), 2);
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[2];
@@ -83,7 +87,7 @@ public class Analytics extends javax.swing.JPanel {
                     if (!isAbnormal(period.getYears(), bp)) {
 
                         if (index < 0) {
-                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity());
+                            Analytic analytic = new Analytic(pat.getResidence().getCommunity().getCommunity(), 3);
                             ana.add(analytic);
                         } else {
                             int res = ana.get(index).arr[3];
@@ -94,6 +98,31 @@ public class Analytics extends javax.swing.JPanel {
             }
         }
         displayPatient();
+
+//        int i = 0;
+//        String legend = null;
+//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//
+////                for(Object vs : ana.toArray()){
+////                    if(vs.getState().equalsIgnoreCase("ABNORMAL"))   
+////                        legend=vs.getTimestamp().concat(" (" +vs.getState()+")");
+////                    else
+////                        legend=vs.getTimestamp();
+////                    dataset.addValue(, legend, "Respiratory Rate");
+//        dataset.setValue(4, ana.get(i).Community, "below 21");
+//        dataset.setValue(5, ana.get(i).Community, "21-46");
+//        dataset.setValue(6, ana.get(i).Community, "46-65");
+//        dataset.setValue(3, ana.get(i).Community, "65+");
+//        i++;
+//
+////                }
+//        JFreeChart chart = ChartFactory.createBarChart3D("Vital Signs", "Vital Signs", "Values", dataset, PlotOrientation.VERTICAL, true, true, true);
+//        CategoryPlot P = chart.getCategoryPlot();
+//        P.setRangeGridlinePaint(Color.BLACK);
+//
+//        ChartFrame frame = new ChartFrame("Bar Charts", chart);
+//        frame.setVisible(true);
+//        frame.setSize(650, 550);
 
     }
 
