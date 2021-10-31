@@ -22,11 +22,11 @@ public class ExistingPatient extends javax.swing.JPanel {
     /**
      * Creates new form ViewPatient
      */
-   
     MedSystem ms;
+
     public ExistingPatient(MedSystem ms) {
         initComponents();
-        this.ms =ms;
+        this.ms = ms;
         btnAddPatient.setEnabled(false);
         displayPatient();
     }
@@ -53,6 +53,7 @@ public class ExistingPatient extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         diag = new javax.swing.JTextField();
         btnAddPatient = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,6 +98,13 @@ public class ExistingPatient extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +138,9 @@ public class ExistingPatient extends javax.swing.JPanel {
                                         .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(26, 26, 26))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(347, 347, 347)
+                                .addGap(238, 238, 238)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -146,7 +156,9 @@ public class ExistingPatient extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -211,29 +223,42 @@ public class ExistingPatient extends javax.swing.JPanel {
 
         Person p = ms.searchUser((int) model.getValueAt(selectedRow, 0));
 
-        System.out.println("temp: "+txtTemp.getText() +" "+TxtPulse.getText() +" "+ txtBP.getText());
-        VitalSigns vs = new VitalSigns(Integer.valueOf(txtTemp.getText()) , Integer.valueOf(TxtPulse.getText()), Integer.valueOf(txtBP.getText()));
-        Encounter enc = new Encounter(vs , resultdate, diag.getText());
- 
-        ms.encounterPatient( p.getId(), enc);
-        
+        System.out.println("temp: " + txtTemp.getText() + " " + TxtPulse.getText() + " " + txtBP.getText());
+        VitalSigns vs = new VitalSigns(Integer.valueOf(txtTemp.getText()), Integer.valueOf(TxtPulse.getText()), Integer.valueOf(txtBP.getText()));
+        Encounter enc = new Encounter(vs, resultdate, diag.getText());
+
+        ms.encounterPatient(p.getId(), enc);
+
         displayPatient();
         btnAddPatient.setEnabled(false);
     }//GEN-LAST:event_btnAddPatientActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
 
-    
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please Select a row to delete.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        ms.deletePatient(Integer.valueOf(model.getValueAt(selectedRow, 0).toString()));
+        displayPatient();
+        JOptionPane.showMessageDialog(this, "Record Deleted!");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     private void displayPatient() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-       model.setRowCount(0);
+        model.setRowCount(0);
         for (Patient v : ms.getPatientList().getPatients()) {
-          
+
             Object[] row = new Object[6];
             row[0] = v.getId();
             row[1] = v.getFullName();
             row[2] = v.getGender();
-            row[3] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign().getBloodPressure();
-            row[4] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign().getBodyTemp();
+            row[3] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size() - 1).getVitalSign().getBloodPressure();
+            row[4] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size() - 1).getVitalSign().getBodyTemp();
 //            row[5] = v.getEncounterHistory().getEncounterHistory().get(v.getEncounterHistory().getEncounterHistory().size()-1).getVitalSign();
             row[5] = v.getEncounterHistory().getEncounterHistory().size();
 
@@ -246,6 +271,7 @@ public class ExistingPatient extends javax.swing.JPanel {
     private javax.swing.JButton btnAddPatient;
     private javax.swing.JTextField diag;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

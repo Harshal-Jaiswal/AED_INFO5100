@@ -10,6 +10,7 @@ import Model.House;
 import Model.MedSystem;
 import Model.Person;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,8 +21,8 @@ public class PersonScreen extends javax.swing.JPanel {
     /**
      * Creates new form PersonScreen
      */
-    
-     MedSystem ms;
+    MedSystem ms;
+
     public PersonScreen(MedSystem ms) {
         initComponents();
         this.ms = ms;
@@ -242,19 +243,69 @@ public class PersonScreen extends javax.swing.JPanel {
 
     private void femaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femaleActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_femaleActionPerformed
 
+    public boolean validateData() {
+
+        if (txtFullName.getText().length() < 2 || !txtFullName.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper name.");
+            return false;
+        }
+
+        if (txtState.getText().length() < 2 || !txtState.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper state.");
+            return false;
+        }
+
+        if (txtCity.getText().length() < 2 || !txtCity.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper City name.");
+            return false;
+        }
+
+        if (txtAdd.getText().length() < 2 || !txtAdd.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper Address.");
+            return false;
+        }
+
+        if (txtComm.getText().length() < 2 || !txtComm.getText().matches("[a-zA-Z]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper community.");
+            return false;
+        }
+
+        if (!txtAptNo.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper Apt Number");
+            return false;
+        }
+
+        if (!txtPersonId.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper person id");
+            return false;
+        }
+        if (!txtZip.getText().matches("[0-9]+")) {
+            JOptionPane.showMessageDialog(this, "Enter proper zip");
+            return false;
+        }
+
+        return true;
+    }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         // fullName, residence, gender, dob, id
-        House h =new House(txtAdd.getText(), txtAptNo.getText(),txtState.getText() ,new Community(txtComm.getText()), new City(txtCity.getText()), Integer.valueOf(txtZip.getText()) );
-        
-        String sss= female.isSelected()? "female": "male";
-        System.out.println("dob:"+dob.getDate());
 
-        Person p = new Person(txtFullName.getText(), h, sss, dob.getDate(), Integer.valueOf( txtPersonId.getText()));
-        ms.addPerson(p);
+        if (validateData()) {
+            House h = new House(txtAdd.getText(), txtAptNo.getText(), txtState.getText(), new Community(txtComm.getText()), new City(txtCity.getText()), Integer.valueOf(txtZip.getText()));
+
+            String sss = female.isSelected() ? "female" : "male";
+            System.out.println("dob:" + dob.getDate());
+
+            Person p = new Person(txtFullName.getText(), h, sss, dob.getDate(), Integer.valueOf(txtPersonId.getText()));
+            ms.addPerson(p);
+            
+            JOptionPane.showMessageDialog(this, "Person Registered");
+            
+        }
+
 
     }//GEN-LAST:event_btnSaveActionPerformed
 

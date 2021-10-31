@@ -27,9 +27,10 @@ public class PersonsScreen extends javax.swing.JPanel {
      * Creates new form PatientScreen
      */
     MedSystem ms;
+
     public PersonsScreen(MedSystem ms) {
         initComponents();
-        this.ms =ms;
+        this.ms = ms;
         btnAddPatient.setEnabled(false);
         DisplayPerson();
     }
@@ -57,6 +58,7 @@ public class PersonsScreen extends javax.swing.JPanel {
         TxtPulse = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         diag = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Person Screen");
@@ -101,6 +103,13 @@ public class PersonsScreen extends javax.swing.JPanel {
 
         jLabel5.setText("Diagnosis");
 
+        jButton2.setText("Delete");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,7 +120,10 @@ public class PersonsScreen extends javax.swing.JPanel {
                         .addGap(20, 20, 20)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jButton2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton1))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +157,9 @@ public class PersonsScreen extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -180,50 +194,65 @@ public class PersonsScreen extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         int selectedRow = jTable1.getSelectedRow();
+        int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please Select a row to Add Vital stats.");
             return;
         }
-        
+
         btnAddPatient.setEnabled(true);
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAddPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPatientActionPerformed
         // TODO add your handling code here:
-        
-          int selectedRow = jTable1.getSelectedRow();
+
+        int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(this, "Please Select a row to Add Vital stats.");
             return;
         }
-        
+
         btnAddPatient.setEnabled(true);
-         Date resultdate = new Date(System.currentTimeMillis());
+        Date resultdate = new Date(System.currentTimeMillis());
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
+
         Person p = ms.searchUser((int) model.getValueAt(selectedRow, 0));
-        
-        System.out.println("temp: "+txtTemp.getText() +" "+TxtPulse.getText() +" "+ txtBP.getText());
+
+        System.out.println("temp: " + txtTemp.getText() + " " + TxtPulse.getText() + " " + txtBP.getText());
         VitalSigns vs = new VitalSigns(Integer.valueOf(txtTemp.getText()), Integer.valueOf(TxtPulse.getText()), Integer.valueOf(txtBP.getText()));
         Encounter enc = new Encounter(vs, resultdate, diag.getText());
         //fullName, residence, gender, dob, id
         Patient pat = new Patient(p.getFullName(), p.getResidence(), p.getGender(), p.getDob(), p.getId(), enc);
         ms.addPatient(pat);
-        
+
         btnAddPatient.setEnabled(false);
     }//GEN-LAST:event_btnAddPatientActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please Select a row to delete.");
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        ms.deletePerson(Integer.valueOf(model.getValueAt(selectedRow, 0).toString()));
+        DisplayPerson();
+        JOptionPane.showMessageDialog(this, "Record Deleted!");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void DisplayPerson() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-       
+        model.setRowCount(0);
         for (Person v : ms.getPersonList().getPersons()) {
-          
-            Period period =  Period.between( v.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
+
+            Period period = Period.between(v.getDob().toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now());
 
             Object[] row = new Object[6];
             row[0] = v.getId();
@@ -237,12 +266,13 @@ public class PersonsScreen extends javax.swing.JPanel {
         }
 
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtPulse;
     private javax.swing.JButton btnAddPatient;
     private javax.swing.JTextField diag;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -15,6 +15,8 @@ public class MedSystem {
         patientList  = new PatientDirectory();
     }
     
+    
+    
     public void addPerson(Person p){
         personList.addPerson(p);
     }
@@ -58,6 +60,14 @@ public class MedSystem {
         patientList.encounterPatient(id, enc);
     }
 
-    
+    public void deletePerson(int id) {
+        personList.deletePerson(id);
+    }
+
+    public void deletePatient(int id) {
+        patientList.deletePatient(id);
+    }
+
+   
 
 }

@@ -43,4 +43,16 @@ public class PersonDirectory {
         }
         return null;
     }
+
+    public void deletePerson(int id) {
+        System.out.println("id "+id);
+        
+       for (Person p : persons) {
+            
+            if (p.getId() == id ) {
+                persons.remove(p);
+                return;
+            }
+        }
+    }
 }
