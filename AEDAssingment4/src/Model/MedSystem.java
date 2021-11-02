@@ -67,6 +67,11 @@ public class MedSystem {
     public void deletePatient(int id) {
         patientList.deletePatient(id);
     }
+    
+      public Patient searcPatient(int txtId) {
+        return patientList.searcPatient(txtId);
+    }
+
 
    
 

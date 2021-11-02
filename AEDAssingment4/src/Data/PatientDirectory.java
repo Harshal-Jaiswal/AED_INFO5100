@@ -7,9 +7,10 @@ import Model.Person;
 import java.util.ArrayList;
 
 public class PatientDirectory {
+
     private ArrayList<Patient> patients = new ArrayList<>();
 
-    public void addPatients(Patient patient){
+    public void addPatients(Patient patient) {
         patients.add(patient);
     }
 
@@ -22,24 +23,35 @@ public class PatientDirectory {
     }
 
     public void encounterPatient(int id, Encounter enc) {
-        
+
         for (Patient v : patients) {
-            
-            if (v.getId() == id ) {
+
+            if (v.getId() == id) {
                 v.getEncounterHistory().addEncounter(enc);
                 return;
             }
         }
         return;
     }
-    
-    public void deletePatient(int id){
+
+    public void deletePatient(int id) {
         for (Patient v : patients) {
-            
-            if (v.getId() == id ) {
+
+            if (v.getId() == id) {
                 patients.remove(v);
                 return;
             }
         }
+    }
+
+    public Patient searcPatient(int txtId) {
+
+        for (Patient v : patients) {
+            if (v.getId() == txtId) {
+                return v;
+            }
+        }
+        return null;
+
     }
 }
