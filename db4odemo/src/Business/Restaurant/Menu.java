@@ -10,11 +10,11 @@ package Business.Restaurant;
  */
 public class Menu {
     
-    private String name;
-    private int price;
-    private String unit;
-    private String type;
-    private String description; 
+     private String name;
+     private int price;
+     private String unit;
+     private String type;
+     private String description; 
     
     public Menu(String n, int amt, String u, String t, String d){
         this.name = n;
@@ -64,5 +64,12 @@ public class Menu {
         this.description = description;
     }
     
+     public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
     
 }

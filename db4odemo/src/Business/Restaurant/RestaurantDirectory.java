@@ -18,7 +18,36 @@ public class RestaurantDirectory {
     public RestaurantDirectory(){
         
     }
+    
+    public Restaurant findRestaurant(String id) {
+        for (Restaurant r : restaurents) {
+            if (r.getUsername().equals(id)) {
 
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public void removeRestaurant(String usr) {
+        for (Restaurant r : restaurents) {
+            if (r.getUsername().equals(usr)) {
+                restaurents.remove(r);
+                return;
+            }
+        }
+    }
+    
+    public Restaurant loginResaturant(String usr, String pass) {
+
+        for (Restaurant r : restaurents) {
+            if (r.getUsername().equals(usr) && r.getPassword().equals(pass)) {
+                return r;
+            }
+        }
+        return null;
+    }
+    
     public void addRestaurant(Restaurant r) {
         restaurents.add(r);
     }
