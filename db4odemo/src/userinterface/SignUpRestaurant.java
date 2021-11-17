@@ -317,7 +317,7 @@ public class SignUpRestaurant extends javax.swing.JPanel {
 
         Restaurant r = new Restaurant(txtUsrName.getText(), txtPass.getText(), new CustomerRole(), txtNo.getText(), txtFullName.getText(), add);
         Menu mm = new Menu("Pizza", 12, "1 medium", "fast food", "12 slices");
-        r.AddMenu(mm);
+        r.addMenu(mm);
         e.addCRestaurant(r);
         dB4OUtil.storeSystem(e);
         MainJFrame suc = new MainJFrame();

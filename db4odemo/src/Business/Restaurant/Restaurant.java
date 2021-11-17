@@ -58,7 +58,7 @@ public class Restaurant extends UserAccount {
 
     }
     
-    public void AddMenu(Menu m){
+    public void addMenu(Menu m){
         try{
             menu.add(m);
         }catch (Exception e){
@@ -91,6 +91,10 @@ public class Restaurant extends UserAccount {
 
     public void setMenu(ArrayList<Menu> menu) {
         this.menu = menu;
+    }
+
+    public void removeHM(String key) {
+        hm.remove(key);
     }
 
     

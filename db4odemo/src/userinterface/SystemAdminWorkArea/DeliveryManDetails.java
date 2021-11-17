@@ -26,7 +26,6 @@ public class DeliveryManDetails extends javax.swing.JPanel {
     public DeliveryManDetails(EcoSystem e, DB4OUtil dB4OUtil) {
         initComponents();
         this.e = e;
-        
         this.dB4OUtil =dB4OUtil;
         populateTable();
     }

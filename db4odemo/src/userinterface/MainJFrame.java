@@ -4,8 +4,10 @@
  */
 package userinterface;
 
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryMan.DeliveryMan;
 
 import Business.Organization;
 import Business.Restaurant.Restaurant;
@@ -15,6 +17,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userinterface.CustomerRole.CustomerMainPage;
+import userinterface.DeliveryManRole.DeliverManMainPage;
 import userinterface.RestaurantAdminRole.RestaurantMainPage;
 
 /**
@@ -171,11 +175,16 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (Role.getSelectedItem().toString() == "Customer") {
-            SignUpCustomer suc = new SignUpCustomer(system, dB4OUtil);
-            this.setContentPane(suc);
-            this.invalidate();
-            this.validate();
-            return;
+            Customer c = system.loginCustomer(txtUsername.getText(), txtPassword.getText());
+            if (c == null) {
+                JOptionPane.showMessageDialog(this, "Incorrect credential");
+            } else {
+                CustomerMainPage cmp = new CustomerMainPage(system, dB4OUtil, c);
+                this.setContentPane(cmp);
+                this.invalidate();
+                this.validate();
+                return;
+            }
 
         }
         if (Role.getSelectedItem().toString() == "Restaurant") {
@@ -194,11 +203,17 @@ public class MainJFrame extends javax.swing.JFrame {
         }
 
         if (Role.getSelectedItem().toString() == "Delivery-Man") {
-            SignUpDeliveryMan sud = new SignUpDeliveryMan(system, dB4OUtil);
-            this.setContentPane(sud);
-            this.invalidate();
-            this.validate();
-            return;
+            DeliveryMan r = system.loginDeliveryMan(txtUsername.getText(), txtPassword.getText());
+
+            if (r == null) {
+                JOptionPane.showMessageDialog(this, "Incorrect credential");
+            } else {
+                DeliverManMainPage rmp = new DeliverManMainPage(system, dB4OUtil, r);
+                this.setContentPane(rmp);
+                this.invalidate();
+                this.validate();
+                return;
+            }
 
         }
 
